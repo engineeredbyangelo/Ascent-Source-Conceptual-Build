@@ -6,49 +6,56 @@ interface PlasmaRingProps {
   explodeProgress: number;
 }
 
+/**
+ * Additional plasma effects - swirling energy around the tokamak
+ */
 const PlasmaRing = ({ explodeProgress }: PlasmaRingProps) => {
-  const ringRef = useRef<THREE.Mesh>(null);
+  const ring1Ref = useRef<THREE.Mesh>(null);
   const ring2Ref = useRef<THREE.Mesh>(null);
 
   useFrame((state) => {
     const t = state.clock.elapsedTime;
-    if (ringRef.current) {
-      ringRef.current.rotation.x = t * 0.3;
-      ringRef.current.rotation.z = Math.sin(t * 0.2) * 0.1;
-      ringRef.current.position.y = explodeProgress * 1.5;
+    if (ring1Ref.current) {
+      ring1Ref.current.rotation.x = Math.PI / 2;
+      ring1Ref.current.rotation.z = t * 0.4;
+      const mat = ring1Ref.current.material as THREE.MeshStandardMaterial;
+      mat.opacity = 0.3 * (1 - explodeProgress * 0.8);
     }
     if (ring2Ref.current) {
-      ring2Ref.current.rotation.x = t * 0.3 + Math.PI / 2;
-      ring2Ref.current.rotation.y = t * 0.15;
-      ring2Ref.current.position.x = explodeProgress * 1.8;
+      ring2Ref.current.rotation.x = Math.PI / 2;
+      ring2Ref.current.rotation.z = -t * 0.25;
+      const mat = ring2Ref.current.material as THREE.MeshStandardMaterial;
+      mat.opacity = 0.2 * (1 - explodeProgress * 0.8);
     }
   });
 
   return (
     <group>
-      <mesh ref={ringRef}>
-        <torusGeometry args={[1.2, 0.08, 16, 64]} />
+      {/* Outer energy ring */}
+      <mesh ref={ring1Ref}>
+        <torusGeometry args={[2.8, 0.02, 8, 64]} />
         <meshStandardMaterial
           color="#00F0FF"
           emissive="#00F0FF"
-          emissiveIntensity={1.5}
+          emissiveIntensity={2}
           transparent
-          opacity={0.8}
-          metalness={0.5}
-          roughness={0.1}
+          opacity={0.3}
+          blending={THREE.AdditiveBlending}
+          depthWrite={false}
         />
       </mesh>
 
+      {/* Secondary ring */}
       <mesh ref={ring2Ref}>
-        <torusGeometry args={[1.0, 0.05, 16, 64]} />
+        <torusGeometry args={[3.2, 0.015, 8, 64]} />
         <meshStandardMaterial
           color="#3DDCFF"
           emissive="#3DDCFF"
-          emissiveIntensity={1}
+          emissiveIntensity={1.5}
           transparent
-          opacity={0.6}
-          metalness={0.5}
-          roughness={0.1}
+          opacity={0.2}
+          blending={THREE.AdditiveBlending}
+          depthWrite={false}
         />
       </mesh>
     </group>

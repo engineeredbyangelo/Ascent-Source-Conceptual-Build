@@ -6,31 +6,38 @@ interface EnergyParticlesProps {
   intensity: number;
 }
 
+/**
+ * Particles orbiting the tokamak in the plasma plane
+ */
 const EnergyParticles = ({ intensity }: EnergyParticlesProps) => {
   const pointsRef = useRef<THREE.Points>(null);
-  const count = 200;
+  const count = 300;
 
-  const positions = useMemo(() => {
+  const { positions, offsets } = useMemo(() => {
     const pos = new Float32Array(count * 3);
+    const off = new Float32Array(count);
     for (let i = 0; i < count; i++) {
       const theta = Math.random() * Math.PI * 2;
-      const phi = Math.random() * Math.PI;
-      const r = 2 + Math.random() * 3;
-      pos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
-      pos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
-      pos[i * 3 + 2] = r * Math.cos(phi);
+      // Concentrate particles around the plasma torus region
+      const r = 1.2 + Math.random() * 1.2;
+      const ySpread = (Math.random() - 0.5) * 0.8;
+      pos[i * 3] = Math.cos(theta) * r;
+      pos[i * 3 + 1] = ySpread;
+      pos[i * 3 + 2] = Math.sin(theta) * r;
+      off[i] = Math.random() * Math.PI * 2;
     }
-    return pos;
+    return { positions: pos, offsets: off };
   }, []);
 
   useFrame((state) => {
     if (!pointsRef.current) return;
     const t = state.clock.elapsedTime;
-    pointsRef.current.rotation.y = t * 0.05;
-    pointsRef.current.rotation.x = Math.sin(t * 0.03) * 0.1;
+
+    // Rotate particles around the reactor
+    pointsRef.current.rotation.y = t * 0.1;
 
     const mat = pointsRef.current.material as THREE.PointsMaterial;
-    mat.opacity = intensity * (0.4 + Math.sin(t * 0.5) * 0.1);
+    mat.opacity = intensity * (0.3 + Math.sin(t * 0.5) * 0.1);
   });
 
   return (
@@ -42,10 +49,10 @@ const EnergyParticles = ({ intensity }: EnergyParticlesProps) => {
         />
       </bufferGeometry>
       <pointsMaterial
-        color="#00F0FF"
-        size={0.03}
+        color="#ffaa66"
+        size={0.025}
         transparent
-        opacity={0.5}
+        opacity={0.4}
         sizeAttenuation
         blending={THREE.AdditiveBlending}
         depthWrite={false}
