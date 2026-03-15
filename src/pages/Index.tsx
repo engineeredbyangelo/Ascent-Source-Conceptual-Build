@@ -1,12 +1,35 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import ReactorCanvas from "@/components/3d/ReactorCanvas";
+import HudOverlay from "@/components/ui/HudOverlay";
+import HeroSection from "@/components/sections/HeroSection";
+import ExplodedSection from "@/components/sections/ExplodedSection";
+import PhilosophySection from "@/components/sections/PhilosophySection";
+import AscentSourceSection from "@/components/sections/AscentSourceSection";
+import FutureCitySection from "@/components/sections/FutureCitySection";
+import TechSection from "@/components/sections/TechSection";
+import VisionSection from "@/components/sections/VisionSection";
+import useScrollProgress from "@/hooks/useScrollProgress";
 
 const Index = () => {
+  const scrollProgress = useScrollProgress();
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="relative bg-background">
+      {/* 3D Canvas - fixed background */}
+      <ReactorCanvas scrollProgress={scrollProgress} />
+
+      {/* HUD Overlay */}
+      <HudOverlay scrollProgress={scrollProgress} />
+
+      {/* Scroll narrative sections */}
+      <main className="relative z-10">
+        <HeroSection />
+        <ExplodedSection />
+        <PhilosophySection />
+        <AscentSourceSection />
+        <FutureCitySection />
+        <TechSection />
+        <VisionSection />
+      </main>
     </div>
   );
 };
