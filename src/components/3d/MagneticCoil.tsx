@@ -7,35 +7,38 @@ interface MagneticCoilProps {
   explodeProgress: number;
 }
 
+/**
+ * Poloidal field coils - horizontal rings that stack above/below the plasma
+ */
 const MagneticCoil = ({ index, explodeProgress }: MagneticCoilProps) => {
   const coilRef = useRef<THREE.Mesh>(null);
 
-  const angle = (index / 3) * Math.PI * 2;
-  const baseX = Math.cos(angle) * 1.5;
-  const baseZ = Math.sin(angle) * 1.5;
+  // Stack coils at different heights
+  const yPositions = [-0.8, 0, 0.8];
+  const radii = [1.9, 2.1, 1.9];
+  const baseY = yPositions[index] || 0;
+  const radius = radii[index] || 2.0;
 
   useFrame((state) => {
     if (!coilRef.current) return;
     const t = state.clock.elapsedTime;
 
-    coilRef.current.rotation.y = t * 0.2 + index * 0.5;
+    // Subtle wobble
+    coilRef.current.rotation.z = Math.sin(t * 0.3 + index) * 0.01;
 
-    // Explode outward
-    const explodeDistance = explodeProgress * 2;
-    coilRef.current.position.x = baseX + Math.cos(angle) * explodeDistance;
-    coilRef.current.position.z = baseZ + Math.sin(angle) * explodeDistance;
-    coilRef.current.position.y = Math.sin(angle + t * 0.3) * 0.1 + explodeProgress * (index - 1) * 1.2;
+    // Explode vertically
+    coilRef.current.position.y = baseY + baseY * explodeProgress * 2;
   });
 
   return (
-    <mesh ref={coilRef} rotation={[Math.PI / 2, 0, angle]}>
-      <torusGeometry args={[0.6, 0.12, 8, 32]} />
+    <mesh ref={coilRef} rotation={[Math.PI / 2, 0, 0]} position={[0, baseY, 0]}>
+      <torusGeometry args={[radius, 0.08, 12, 48]} />
       <meshStandardMaterial
-        color="#4a4a6a"
+        color="#6a6e7e"
         metalness={0.95}
         roughness={0.15}
         emissive="#00F0FF"
-        emissiveIntensity={0.15}
+        emissiveIntensity={0.08 + explodeProgress * 0.2}
       />
     </mesh>
   );
