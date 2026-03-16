@@ -72,7 +72,7 @@
 
 @layer components {
   .hud-panel {
-    @apply bg-card/85 backdrop-blur-xl border border-border rounded-lg shadow-[0_4px_30px_hsl(0_0%_0%/0.5)];
+    @apply bg-card/40 backdrop-blur-xl border border-white/10 rounded-lg shadow-[0_8px_32px_hsl(0_0%_0%/0.2)];
   }
 
   .hud-button {
