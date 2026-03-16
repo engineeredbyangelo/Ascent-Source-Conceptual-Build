@@ -9,6 +9,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
+          className="hud-panel p-8 sm:p-12"
         >
           <p className="tech-label mb-6">Conceptual Fusion Technology</p>
           <h1 className="heading-hero text-foreground mb-6">
@@ -21,25 +22,24 @@ const HeroSection = () => {
             <br />
             The Ascent Source reimagines fusion for a decentralized world.
           </p>
+
+          <button className="hud-button-primary">
+            ACCESS SCHEMATICS
+          </button>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
-          className="flex flex-col items-center gap-3"
+          className="flex flex-col items-center gap-3 mt-12"
         >
-          <button className="hud-button-primary">
-            ACCESS SCHEMATICS
-          </button>
-          <div className="mt-12 flex flex-col items-center gap-2">
-            <span className="tech-label text-muted-foreground/40">Scroll to explore</span>
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="w-px h-8 bg-gradient-to-b from-primary/60 to-transparent"
-            />
-          </div>
+          <span className="tech-label text-muted-foreground/40">Scroll to explore</span>
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="w-px h-8 bg-gradient-to-b from-primary/60 to-transparent"
+          />
         </motion.div>
       </div>
     </SectionContainer>

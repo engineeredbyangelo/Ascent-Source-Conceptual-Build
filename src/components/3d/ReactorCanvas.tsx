@@ -8,6 +8,8 @@ interface ReactorCanvasProps {
 }
 
 const ReactorCanvas = ({ scrollProgress }: ReactorCanvasProps) => {
+  const overlayOpacity = Math.min(0.15 + scrollProgress * 0.45, 0.6);
+
   return (
     <div className="fixed inset-0 z-0">
       <Canvas
@@ -20,6 +22,10 @@ const ReactorCanvas = ({ scrollProgress }: ReactorCanvasProps) => {
           <Environment preset="night" />
         </Suspense>
       </Canvas>
+      <div
+        className="absolute inset-0 bg-background pointer-events-none"
+        style={{ opacity: overlayOpacity }}
+      />
     </div>
   );
 };

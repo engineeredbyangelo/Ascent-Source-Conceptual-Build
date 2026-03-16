@@ -21,7 +21,7 @@ const PhilosophySection = () => {
           Energy Philosophy
         </motion.p>
 
-        <div className="space-y-20">
+        <div className="space-y-12">
           {statements.map((text, i) => (
             <motion.div
               key={i}
@@ -33,25 +33,27 @@ const PhilosophySection = () => {
                 ease: [0.23, 1, 0.32, 1],
                 delay: 0.1,
               }}
+              className="hud-panel p-8 sm:p-10"
             >
               <h2 className="heading-section text-foreground text-balance">
                 {text}
               </h2>
-              {i < statements.length - 1 && <GlowDivider className="mt-20" />}
             </motion.div>
           ))}
         </div>
 
-        <motion.p
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3, duration: 1 }}
-          className="body-text max-w-xl mt-20 text-pretty"
+          className="hud-panel p-8 mt-16"
         >
-          The Ascent Source is not a battery. It is a star in a box.
-          4.2 Gigawatts of decentralized, zero-carbon potential.
-        </motion.p>
+          <p className="body-text max-w-xl text-pretty">
+            The Ascent Source is not a battery. It is a star in a box.
+            4.2 Gigawatts of decentralized, zero-carbon potential.
+          </p>
+        </motion.div>
       </div>
     </SectionContainer>
   );
