@@ -9,7 +9,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
-          className="hud-panel p-8 sm:p-12"
+          className="p-8 sm:p-12"
         >
           <p className="tech-label mb-6">Conceptual Fusion Technology</p>
           <h1 className="heading-hero text-foreground mb-6">
