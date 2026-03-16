@@ -22,10 +22,6 @@ const HeroSection = () => {
             <br />
             The Ascent Source reimagines fusion for a decentralized world.
           </p>
-
-          <button className="hud-button-primary">
-            ACCESS SCHEMATICS
-          </button>
         </motion.div>
 
         <motion.div

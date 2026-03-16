@@ -14,25 +14,24 @@ const scenes = [
             whileInView={{ height: `${h}%`, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.08, duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-            className="w-3 sm:w-4 rounded-t-sm border-t border-l border-r border-primary/30"
+            className="w-3 sm:w-4 rounded-t-sm border-t border-l border-r border-primary/30 transition-all duration-500 group-hover:border-primary/60"
             style={{
               background: `linear-gradient(to top, hsl(var(--primary) / 0.25), hsl(var(--primary) / 0.05))`,
             }}
           >
-            {/* Window lights */}
             <div className="flex flex-col items-center gap-1.5 pt-2">
               {Array.from({ length: Math.floor(h / 20) }).map((_, j) => (
-                <div key={j} className="w-1 h-1 rounded-full bg-primary/60" />
+                <div key={j} className="w-1 h-1 rounded-full bg-primary/60 transition-shadow duration-500 group-hover:shadow-[0_0_4px_hsl(var(--primary)/0.8)]" />
               ))}
             </div>
           </motion.div>
         ))}
         {/* Reactor core at base */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center">
-          <div className="w-2 h-2 rounded-full bg-primary shadow-[0_0_12px_hsl(var(--primary)/0.8)]" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center transition-all duration-500 group-hover:scale-150 group-hover:bg-primary/30 group-hover:border-primary/60">
+          <div className="w-2 h-2 rounded-full bg-primary shadow-[0_0_12px_hsl(var(--primary)/0.8)] transition-shadow duration-500 group-hover:shadow-[0_0_24px_hsl(var(--primary)/1)]" />
         </div>
         {/* Energy flow lines */}
-        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent transition-all duration-500 group-hover:via-primary/80 group-hover:shadow-[0_0_8px_hsl(var(--primary)/0.4)]" />
       </div>
     ),
   },
@@ -41,11 +40,9 @@ const scenes = [
     description: "Fusion-powered transit networks moving millions silently and emission-free across entire regions.",
     visual: (
       <div className="relative h-40 flex items-center justify-center overflow-hidden">
-        {/* Track lines */}
-        <div className="absolute w-full h-px top-1/2 bg-muted/40" />
-        <div className="absolute w-full h-px top-[40%] bg-muted/20" />
-        <div className="absolute w-full h-px top-[60%] bg-muted/20" />
-        {/* Energy pulses along tracks */}
+        <div className="absolute w-full h-px top-1/2 bg-muted/40 transition-colors duration-500 group-hover:bg-primary/30" />
+        <div className="absolute w-full h-px top-[40%] bg-muted/20 transition-colors duration-500 group-hover:bg-primary/20" />
+        <div className="absolute w-full h-px top-[60%] bg-muted/20 transition-colors duration-500 group-hover:bg-primary/20" />
         {[0, 1, 2].map((i) => (
           <motion.div
             key={i}
@@ -64,12 +61,11 @@ const scenes = [
           />
         ))}
         {/* Central station reactor */}
-        <div className="relative z-10 w-10 h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center">
+        <div className="relative z-10 w-10 h-10 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center transition-all duration-500 group-hover:scale-125 group-hover:bg-primary/20 group-hover:border-primary/50">
           <div className="w-4 h-4 rounded-full bg-primary/30 border border-primary/50 flex items-center justify-center">
-            <div className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_10px_hsl(var(--primary)/0.6)]" />
+            <div className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_10px_hsl(var(--primary)/0.6)] transition-shadow duration-500 group-hover:shadow-[0_0_20px_hsl(var(--primary)/1)]" />
           </div>
         </div>
-        {/* Radial energy rings */}
         <motion.div
           className="absolute w-20 h-20 rounded-full border border-primary/20"
           animate={{ scale: [1, 1.5], opacity: [0.3, 0] }}
@@ -83,7 +79,6 @@ const scenes = [
     description: "A decentralized mesh network beaming power wirelessly, eliminating infrastructure bottlenecks.",
     visual: (
       <div className="relative h-40 flex items-center justify-center">
-        {/* Grid nodes */}
         {[
           { x: 50, y: 50 }, { x: 25, y: 30 }, { x: 75, y: 30 },
           { x: 25, y: 70 }, { x: 75, y: 70 }, { x: 50, y: 20 },
@@ -102,13 +97,12 @@ const scenes = [
             viewport={{ once: true }}
             transition={{ delay: i * 0.1, duration: 0.4 }}
           >
-            <div className={`rounded-full flex items-center justify-center ${i === 0 ? 'w-5 h-5 bg-primary/30 border border-primary/60' : 'w-2.5 h-2.5 bg-primary/20 border border-primary/30'}`}>
-              {i === 0 && <div className="w-2 h-2 rounded-full bg-primary shadow-[0_0_10px_hsl(var(--primary)/0.8)]" />}
+            <div className={`rounded-full flex items-center justify-center transition-all duration-500 ${i === 0 ? 'w-5 h-5 bg-primary/30 border border-primary/60 group-hover:scale-150 group-hover:bg-primary/40 group-hover:shadow-[0_0_20px_hsl(var(--primary)/0.6)]' : 'w-2.5 h-2.5 bg-primary/20 border border-primary/30 group-hover:bg-primary/40 group-hover:border-primary/50'}`}>
+              {i === 0 && <div className="w-2 h-2 rounded-full bg-primary shadow-[0_0_10px_hsl(var(--primary)/0.8)] transition-shadow duration-500 group-hover:shadow-[0_0_24px_hsl(var(--primary)/1)]" />}
             </div>
           </motion.div>
         ))}
-        {/* Connection lines from center */}
-        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <svg className="absolute inset-0 w-full h-full transition-opacity duration-500 group-hover:opacity-100 opacity-60" viewBox="0 0 100 100" preserveAspectRatio="none">
           {[
             [50, 50, 25, 30], [50, 50, 75, 30], [50, 50, 25, 70],
             [50, 50, 75, 70], [50, 50, 50, 20], [50, 50, 50, 80],
@@ -119,6 +113,7 @@ const scenes = [
               x1={x1} y1={y1} x2={x2} y2={y2}
               stroke="hsl(187 100% 50% / 0.15)"
               strokeWidth="0.3"
+              className="transition-all duration-500 group-hover:[stroke:hsl(187_100%_50%/0.4)] group-hover:[stroke-width:0.5]"
               initial={{ pathLength: 0 }}
               whileInView={{ pathLength: 1 }}
               viewport={{ once: true }}
@@ -134,7 +129,6 @@ const scenes = [
     description: "Compact fusion units deployed anywhere — remote communities, ships, space stations — energy independence at any scale.",
     visual: (
       <div className="relative h-40 flex items-center justify-center">
-        {/* Landscape dots */}
         {[
           { x: 20, y: 35 }, { x: 45, y: 55 }, { x: 70, y: 40 },
           { x: 35, y: 70 }, { x: 80, y: 65 },
@@ -148,18 +142,16 @@ const scenes = [
             viewport={{ once: true }}
             transition={{ delay: i * 0.15, duration: 0.5 }}
           >
-            <div className="w-6 h-6 rounded-full bg-primary/15 border border-primary/40 flex items-center justify-center">
-              <div className="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_hsl(var(--primary)/0.6)]" />
+            <div className="w-6 h-6 rounded-full bg-primary/15 border border-primary/40 flex items-center justify-center transition-all duration-500 group-hover:scale-125 group-hover:bg-primary/25 group-hover:border-primary/60">
+              <div className="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_hsl(var(--primary)/0.6)] transition-shadow duration-500 group-hover:shadow-[0_0_16px_hsl(var(--primary)/1)]" />
             </div>
-            {/* Energy radius */}
             <motion.div
-              className="absolute w-12 h-12 rounded-full border border-primary/10"
+              className="absolute w-12 h-12 rounded-full border border-primary/10 transition-colors duration-500 group-hover:border-primary/25"
               animate={{ scale: [1, 1.3], opacity: [0.2, 0] }}
               transition={{ duration: 2.5, repeat: Infinity, delay: i * 0.4 }}
             />
           </motion.div>
         ))}
-        {/* Terrain line */}
         <div className="absolute bottom-6 w-4/5 h-px bg-gradient-to-r from-transparent via-muted/30 to-transparent" />
       </div>
     ),
@@ -196,14 +188,14 @@ const FutureCitySection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: i * 0.15, duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-              className="hud-panel p-6 group hover:border-primary/30 transition-colors duration-500"
+              className="hud-panel p-6 group cursor-pointer transition-all duration-500 hover:border-primary/40 hover:shadow-[0_0_30px_hsl(var(--primary)/0.12)]"
             >
               {/* Visual */}
-              <div className="mb-4 overflow-hidden rounded-md">
+              <div className="mb-4 overflow-hidden rounded-md transition-transform duration-500 group-hover:scale-[1.03]">
                 {scene.visual}
               </div>
               {/* Text */}
-              <h3 className="font-mono text-sm tracking-[0.15em] uppercase text-primary mb-2">
+              <h3 className="font-mono text-sm tracking-[0.15em] uppercase text-primary mb-2 transition-all duration-500 group-hover:tracking-[0.2em]">
                 {scene.title}
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
