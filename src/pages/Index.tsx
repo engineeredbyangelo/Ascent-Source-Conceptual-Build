@@ -18,7 +18,7 @@ const Index = () => {
       <ReactorCanvas scrollProgress={scrollProgress} />
 
       {/* HUD Overlay */}
-      <HudOverlay scrollProgress={scrollProgress} />
+      <HudOverlay />
 
       {/* Scroll narrative sections */}
       <main className="relative z-10">
