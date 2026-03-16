@@ -20,16 +20,18 @@ const AscentSourceSection = () => {
           transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
           className="text-center mb-20"
         >
-          <p className="tech-label text-primary mb-6">Modular Infrastructure</p>
-          <h2 className="heading-section text-foreground mb-6">
-            THE ASCENT
-            <br />
-            <span className="text-primary glow-text">SOURCE UNIT</span>
-          </h2>
-          <p className="body-text max-w-lg mx-auto">
-            Compressed to infrastructure scale. One unit powers a neighborhood.
-            A cluster powers a city.
-          </p>
+          <div className="hud-panel p-8 sm:p-10 inline-block">
+            <p className="tech-label text-primary mb-6">Modular Infrastructure</p>
+            <h2 className="heading-section text-foreground mb-6">
+              THE ASCENT
+              <br />
+              <span className="text-primary glow-text">SOURCE UNIT</span>
+            </h2>
+            <p className="body-text max-w-lg mx-auto">
+              Compressed to infrastructure scale. One unit powers a neighborhood.
+              A cluster powers a city.
+            </p>
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

@@ -19,12 +19,14 @@ const FutureCitySection = () => {
           transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
           className="text-center mb-20"
         >
-          <p className="tech-label text-primary mb-6">2040 Projection</p>
-          <h2 className="heading-section text-foreground mb-6">
-            A WORLD POWERED BY
-            <br />
-            <span className="text-primary glow-text">ASCENT</span>
-          </h2>
+          <div className="hud-panel p-8 sm:p-10 inline-block">
+            <p className="tech-label text-primary mb-6">2040 Projection</p>
+            <h2 className="heading-section text-foreground mb-6">
+              A WORLD POWERED BY
+              <br />
+              <span className="text-primary glow-text">ASCENT</span>
+            </h2>
+          </div>
         </motion.div>
 
         {/* Stylized city visualization using CSS */}
@@ -35,7 +37,6 @@ const FutureCitySection = () => {
           transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
           className="relative h-64 sm:h-80 md:h-96 mb-16 rounded-2xl overflow-hidden"
         >
-          {/* City skyline abstraction */}
           <div className="absolute inset-0 bg-gradient-to-t from-background via-carbon to-background/50">
             <div className="absolute bottom-0 w-full flex items-end justify-center gap-1 sm:gap-2 px-4">
               {Array.from({ length: 20 }).map((_, i) => {
@@ -61,7 +62,6 @@ const FutureCitySection = () => {
                 );
               })}
             </div>
-            {/* Glow at base */}
             <div className="absolute bottom-0 w-full h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
             <div className="absolute bottom-0 w-full h-16 bg-gradient-to-t from-primary/10 to-transparent" />
           </div>
@@ -75,7 +75,7 @@ const FutureCitySection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 + 0.3, duration: 0.6 }}
-              className="text-center"
+              className="hud-panel p-4 text-center"
             >
               <div className="w-1 h-1 rounded-full bg-primary mx-auto mb-3" />
               <p className="font-mono text-xs tracking-wider text-muted-foreground">{el}</p>
