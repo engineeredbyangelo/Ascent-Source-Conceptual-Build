@@ -51,10 +51,15 @@ const ReactorScene = ({ scrollProgress }: ReactorSceneProps) => {
 
   return (
     <>
-      <ambientLight intensity={0.15} />
-      <pointLight position={[5, 5, 5]} intensity={0.6} color="#ffffff" />
+      <ambientLight intensity={0.12} />
+      <pointLight position={[5, 5, 5]} intensity={0.7} color="#ffffff" />
       <pointLight position={[-5, -3, -5]} intensity={0.3} color="#aabbcc" />
-      <pointLight position={[0, 3, 0]} intensity={0.4} color="#ffffff" />
+      <pointLight position={[0, 4, 0]} intensity={0.5} color="#ffffff" />
+      <pointLight position={[3, -2, 4]} intensity={0.2} color="#ff9966" />
+      
+      {/* Rim lights for metallic highlights */}
+      <directionalLight position={[-4, 2, -3]} intensity={0.3} color="#aaccff" />
+      <directionalLight position={[4, -1, 3]} intensity={0.2} color="#ffddaa" />
 
       {/* Subtle ground reflection */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -2.5, 0]}>
