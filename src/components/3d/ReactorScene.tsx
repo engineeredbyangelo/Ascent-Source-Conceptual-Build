@@ -37,7 +37,7 @@ const ReactorScene = ({ scrollProgress }: ReactorSceneProps) => {
 
     // Position
     groupRef.current.position.y = -heroPhase * 0.3 + closePhase * 0.2;
-    groupRef.current.position.z = -zoomOutPhase * 5;
+    
   });
 
   // Camera
