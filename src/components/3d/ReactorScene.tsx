@@ -18,7 +18,7 @@ const ReactorScene = ({ scrollProgress }: ReactorSceneProps) => {
   const explodePhase = Math.max(0, Math.min((scrollProgress - 0.15) / 0.15, 1));
   const dimPhase = Math.max(0, Math.min((scrollProgress - 0.3) / 0.1, 1));
   const closePhase = Math.max(0, Math.min((scrollProgress - 0.45) / 0.1, 1));
-  const zoomOutPhase = Math.max(0, Math.min((scrollProgress - 0.65) / 0.1, 1));
+  
 
   // Reactor closes back up as user enters Security section
   const effectiveExplode = explodePhase * (1 - closePhase);
