@@ -31,8 +31,8 @@ const ReactorScene = ({ scrollProgress }: ReactorSceneProps) => {
     groupRef.current.rotation.y = t * 0.08 + heroPhase * 0.3;
     groupRef.current.rotation.x = Math.sin(t * 0.05) * 0.03;
 
-    // Scale: shrink slightly after close, then smaller for zoom-out
-    const baseScale = 0.85 - closePhase * 0.15 - zoomOutPhase * 0.3;
+    // Scale: shrink slightly after close
+    const baseScale = 0.85 - closePhase * 0.15;
     groupRef.current.scale.setScalar(baseScale);
 
     // Position
