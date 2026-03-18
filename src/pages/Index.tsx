@@ -28,6 +28,7 @@ const Index = () => {
         <PhilosophySection />
         <AscentSourceSection />
         <FutureCitySection />
+        <SecuritySection />
         <TechSection />
         <VisionSection />
       </main>
