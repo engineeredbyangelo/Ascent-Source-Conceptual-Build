@@ -17,8 +17,11 @@ const ReactorScene = ({ scrollProgress }: ReactorSceneProps) => {
   const heroPhase = Math.min(scrollProgress / 0.15, 1);
   const explodePhase = Math.max(0, Math.min((scrollProgress - 0.15) / 0.15, 1));
   const dimPhase = Math.max(0, Math.min((scrollProgress - 0.3) / 0.1, 1));
-  const compressPhase = Math.max(0, Math.min((scrollProgress - 0.5) / 0.1, 1));
+  const closePhase = Math.max(0, Math.min((scrollProgress - 0.45) / 0.1, 1));
   const zoomOutPhase = Math.max(0, Math.min((scrollProgress - 0.65) / 0.1, 1));
+
+  // Reactor closes back up as user enters Security section
+  const effectiveExplode = explodePhase * (1 - closePhase);
 
   useFrame((state) => {
     if (!groupRef.current) return;
@@ -28,12 +31,12 @@ const ReactorScene = ({ scrollProgress }: ReactorSceneProps) => {
     groupRef.current.rotation.y = t * 0.08 + heroPhase * 0.3;
     groupRef.current.rotation.x = Math.sin(t * 0.05) * 0.03;
 
-    // Scale
-    const baseScale = 0.85 - compressPhase * 0.4 - zoomOutPhase * 0.3;
+    // Scale: shrink slightly after close, then smaller for zoom-out
+    const baseScale = 0.85 - closePhase * 0.15 - zoomOutPhase * 0.3;
     groupRef.current.scale.setScalar(baseScale);
 
     // Position
-    groupRef.current.position.y = -heroPhase * 0.3 + compressPhase * 0.8;
+    groupRef.current.position.y = -heroPhase * 0.3 + closePhase * 0.2;
     groupRef.current.position.z = -zoomOutPhase * 5;
   });
 
@@ -41,7 +44,7 @@ const ReactorScene = ({ scrollProgress }: ReactorSceneProps) => {
   useFrame((state) => {
     const cam = state.camera;
     const targetZ = 9 - heroPhase * 2.5 + zoomOutPhase * 15;
-    const targetY = 1.5 + heroPhase * 0.3 - compressPhase * 0.5 + zoomOutPhase * 3;
+    const targetY = 1.5 + heroPhase * 0.3 - closePhase * 0.3 + zoomOutPhase * 3;
     const targetX = Math.sin(heroPhase * 0.3) * 0.5;
     cam.position.z = THREE.MathUtils.lerp(cam.position.z, targetZ, 0.05);
     cam.position.y = THREE.MathUtils.lerp(cam.position.y, targetY, 0.05);
@@ -74,12 +77,12 @@ const ReactorScene = ({ scrollProgress }: ReactorSceneProps) => {
       </mesh>
 
       <group ref={groupRef}>
-        <ReactorCore explodeProgress={explodePhase} />
-        <PlasmaRing explodeProgress={explodePhase} />
-        <MagneticCoil index={0} explodeProgress={explodePhase} />
-        <MagneticCoil index={1} explodeProgress={explodePhase} />
-        <MagneticCoil index={2} explodeProgress={explodePhase} />
-        <EnergyParticles intensity={1 - dimPhase * 0.5} />
+        <ReactorCore explodeProgress={effectiveExplode} />
+        <PlasmaRing explodeProgress={effectiveExplode} />
+        <MagneticCoil index={0} explodeProgress={effectiveExplode} />
+        <MagneticCoil index={1} explodeProgress={effectiveExplode} />
+        <MagneticCoil index={2} explodeProgress={effectiveExplode} />
+        <EnergyParticles intensity={1 - dimPhase * 0.5 + closePhase * 0.3} />
       </group>
     </>
   );
