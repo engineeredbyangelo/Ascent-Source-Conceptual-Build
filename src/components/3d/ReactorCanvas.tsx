@@ -8,7 +8,9 @@ interface ReactorCanvasProps {
 }
 
 const ReactorCanvas = ({ scrollProgress }: ReactorCanvasProps) => {
-  const overlayOpacity = Math.min(0.15 + scrollProgress * 0.45, 0.6);
+  // Increase overlay opacity more during security section (0.45–0.65) for readability
+  const securityDim = scrollProgress > 0.45 ? Math.min((scrollProgress - 0.45) / 0.15, 1) * 0.2 : 0;
+  const overlayOpacity = Math.min(0.15 + scrollProgress * 0.45 + securityDim, 0.75);
 
   return (
     <div className="fixed inset-0 z-0">
