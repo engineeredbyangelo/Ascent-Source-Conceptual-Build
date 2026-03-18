@@ -43,8 +43,8 @@ const ReactorScene = ({ scrollProgress }: ReactorSceneProps) => {
   // Camera
   useFrame((state) => {
     const cam = state.camera;
-    const targetZ = 9 - heroPhase * 2.5 + zoomOutPhase * 15;
-    const targetY = 1.5 + heroPhase * 0.3 - closePhase * 0.3 + zoomOutPhase * 3;
+    const targetZ = 9 - heroPhase * 2.5;
+    const targetY = 1.5 + heroPhase * 0.3 - closePhase * 0.3;
     const targetX = Math.sin(heroPhase * 0.3) * 0.5;
     cam.position.z = THREE.MathUtils.lerp(cam.position.z, targetZ, 0.05);
     cam.position.y = THREE.MathUtils.lerp(cam.position.y, targetY, 0.05);
