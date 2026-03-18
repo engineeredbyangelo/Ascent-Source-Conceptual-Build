@@ -18,7 +18,7 @@ const ReactorScene = ({ scrollProgress }: ReactorSceneProps) => {
   const explodePhase = Math.max(0, Math.min((scrollProgress - 0.15) / 0.15, 1));
   const dimPhase = Math.max(0, Math.min((scrollProgress - 0.3) / 0.1, 1));
   const closePhase = Math.max(0, Math.min((scrollProgress - 0.45) / 0.1, 1));
-  const zoomOutPhase = Math.max(0, Math.min((scrollProgress - 0.65) / 0.1, 1));
+  
 
   // Reactor closes back up as user enters Security section
   const effectiveExplode = explodePhase * (1 - closePhase);
@@ -31,20 +31,20 @@ const ReactorScene = ({ scrollProgress }: ReactorSceneProps) => {
     groupRef.current.rotation.y = t * 0.08 + heroPhase * 0.3;
     groupRef.current.rotation.x = Math.sin(t * 0.05) * 0.03;
 
-    // Scale: shrink slightly after close, then smaller for zoom-out
-    const baseScale = 0.85 - closePhase * 0.15 - zoomOutPhase * 0.3;
+    // Scale: shrink slightly after close
+    const baseScale = 0.85 - closePhase * 0.15;
     groupRef.current.scale.setScalar(baseScale);
 
     // Position
     groupRef.current.position.y = -heroPhase * 0.3 + closePhase * 0.2;
-    groupRef.current.position.z = -zoomOutPhase * 5;
+    
   });
 
   // Camera
   useFrame((state) => {
     const cam = state.camera;
-    const targetZ = 9 - heroPhase * 2.5 + zoomOutPhase * 15;
-    const targetY = 1.5 + heroPhase * 0.3 - closePhase * 0.3 + zoomOutPhase * 3;
+    const targetZ = 9 - heroPhase * 2.5;
+    const targetY = 1.5 + heroPhase * 0.3 - closePhase * 0.3;
     const targetX = Math.sin(heroPhase * 0.3) * 0.5;
     cam.position.z = THREE.MathUtils.lerp(cam.position.z, targetZ, 0.05);
     cam.position.y = THREE.MathUtils.lerp(cam.position.y, targetY, 0.05);
