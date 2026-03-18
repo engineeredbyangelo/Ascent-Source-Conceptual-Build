@@ -5,6 +5,7 @@ import ExplodedSection from "@/components/sections/ExplodedSection";
 import PhilosophySection from "@/components/sections/PhilosophySection";
 import AscentSourceSection from "@/components/sections/AscentSourceSection";
 import FutureCitySection from "@/components/sections/FutureCitySection";
+import SecuritySection from "@/components/sections/SecuritySection";
 import TechSection from "@/components/sections/TechSection";
 import VisionSection from "@/components/sections/VisionSection";
 import useScrollProgress from "@/hooks/useScrollProgress";
@@ -27,6 +28,7 @@ const Index = () => {
         <PhilosophySection />
         <AscentSourceSection />
         <FutureCitySection />
+        <SecuritySection />
         <TechSection />
         <VisionSection />
       </main>
