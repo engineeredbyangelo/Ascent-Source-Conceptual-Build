@@ -77,12 +77,12 @@ const ReactorScene = ({ scrollProgress }: ReactorSceneProps) => {
       </mesh>
 
       <group ref={groupRef}>
-        <ReactorCore explodeProgress={explodePhase} />
-        <PlasmaRing explodeProgress={explodePhase} />
-        <MagneticCoil index={0} explodeProgress={explodePhase} />
-        <MagneticCoil index={1} explodeProgress={explodePhase} />
-        <MagneticCoil index={2} explodeProgress={explodePhase} />
-        <EnergyParticles intensity={1 - dimPhase * 0.5} />
+        <ReactorCore explodeProgress={effectiveExplode} />
+        <PlasmaRing explodeProgress={effectiveExplode} />
+        <MagneticCoil index={0} explodeProgress={effectiveExplode} />
+        <MagneticCoil index={1} explodeProgress={effectiveExplode} />
+        <MagneticCoil index={2} explodeProgress={effectiveExplode} />
+        <EnergyParticles intensity={1 - dimPhase * 0.5 + closePhase * 0.3} />
       </group>
     </>
   );
