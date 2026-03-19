@@ -45,8 +45,12 @@ const HeroSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.8, duration: 1 }}
-          className="flex flex-col items-center gap-3 mt-20"
+          className="flex flex-col items-center gap-6 mt-20"
         >
+          <Link to="/discover" className="hud-button-primary inline-flex items-center gap-3 rounded-lg no-underline">
+            Discover the Technology
+            <ArrowRight className="w-4 h-4" />
+          </Link>
           <span className="tech-label text-muted-foreground/40 tracking-[0.25em]">Scroll to explore</span>
           <motion.div
             animate={{ y: [0, 8, 0] }}
