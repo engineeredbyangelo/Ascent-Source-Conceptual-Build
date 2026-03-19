@@ -9,6 +9,17 @@ const fade = {
   transition: { duration: 0.7, ease: [0.23, 1, 0.32, 1] },
 };
 
+const staggerContainer = {
+  initial: {},
+  whileInView: { transition: { staggerChildren: 0.12 } },
+  viewport: { once: true, margin: "-80px" },
+};
+
+const staggerItem = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.23, 1, 0.32, 1] } },
+};
+
 const Discover = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -52,7 +63,7 @@ const Discover = () => {
             increase <span className="text-foreground font-semibold">50% by 2040</span>.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-4" {...staggerContainer}>
             {[
               {
                 icon: Flame,
@@ -73,9 +84,10 @@ const Discover = () => {
                 desc: "Single points of failure affecting millions",
               },
             ].map((item) => (
-              <div
+              <motion.div
                 key={item.label}
                 className="hud-panel p-6 group hover:border-primary/30 transition-colors"
+                variants={staggerItem}
               >
                 <item.icon className="w-5 h-5 text-primary mb-4" />
                 <p className="font-display text-3xl font-bold text-foreground mb-1">
@@ -83,9 +95,9 @@ const Discover = () => {
                 </p>
                 <p className="tech-label text-primary mb-2">{item.label}</p>
                 <p className="text-sm text-muted-foreground">{item.desc}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </motion.section>
 
         <div className="h-px glow-line" />
@@ -105,7 +117,7 @@ const Discover = () => {
 
           {/* Design Principles */}
           <p className="tech-label text-primary mb-6">Design Principles</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-16">
+          <motion.div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-16" {...staggerContainer}>
             {[
               {
                 title: "Decentralization",
@@ -128,19 +140,20 @@ const Discover = () => {
                 desc: "Modular design scales from neighborhoods to megacities",
               },
             ].map((p, i) => (
-              <div
+              <motion.div
                 key={p.title}
                 className={`p-5 border border-border rounded-lg bg-card/30 ${i === 4 ? "sm:col-span-2" : ""}`}
+                variants={staggerItem}
               >
                 <p className="font-display text-foreground font-medium mb-1">{p.title}</p>
                 <p className="text-sm text-muted-foreground">{p.desc}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           {/* How It Works */}
           <p className="tech-label text-primary mb-6">How It Works</p>
-          <div className="space-y-6">
+          <motion.div className="space-y-6" {...staggerContainer}>
             {[
               {
                 step: "01",
@@ -168,15 +181,15 @@ const Discover = () => {
                 desc: "The lithium blanket breeds tritium, creating a self-sustaining fuel loop",
               },
             ].map((s) => (
-              <div key={s.step} className="flex gap-5 items-start">
+              <motion.div key={s.step} className="flex gap-5 items-start" variants={staggerItem}>
                 <span className="font-mono text-primary text-sm mt-1 shrink-0">{s.step}</span>
                 <div>
                   <p className="font-display text-foreground font-medium">{s.title}</p>
                   <p className="text-sm text-muted-foreground mt-1">{s.desc}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </motion.section>
 
         <div className="h-px glow-line" />
@@ -188,9 +201,9 @@ const Discover = () => {
             Cleaner Than Clean
           </h2>
 
-          <div className="space-y-16">
+          <motion.div className="space-y-16" {...staggerContainer}>
             {/* Cleaner */}
-            <div>
+            <motion.div variants={staggerItem}>
               <div className="flex items-center gap-3 mb-4">
                 <Shield className="w-5 h-5 text-primary" />
                 <p className="heading-feature">Safer Than Fission</p>
@@ -207,10 +220,10 @@ const Discover = () => {
                   greater energy density than coal per unit mass
                 </p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Renewable */}
-            <div>
+            <motion.div variants={staggerItem}>
               <div className="flex items-center gap-3 mb-4">
                 <Droplets className="w-5 h-5 text-primary" />
                 <p className="heading-feature">Renewable at Cosmic Scale</p>
@@ -227,10 +240,10 @@ const Discover = () => {
                   One gallon of seawater contains the energy equivalent of 300 gallons of gasoline
                 </p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Safer */}
-            <div>
+            <motion.div variants={staggerItem}>
               <div className="flex items-center gap-3 mb-4">
                 <Atom className="w-5 h-5 text-primary" />
                 <p className="heading-feature">Inherently Safe</p>
@@ -239,8 +252,8 @@ const Discover = () => {
                 Any disruption causes the reaction to extinguish immediately. No chain reaction to
                 control, no critical mass to manage, and no possibility of a catastrophic event.
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </motion.section>
 
         <div className="h-px glow-line" />
@@ -255,19 +268,19 @@ const Discover = () => {
             A single Ascent Source reactor produces 4.2 GW of continuous thermal output — enough
             to power approximately 3 million homes.
           </p>
-          <div className="space-y-3">
+          <motion.div className="space-y-3" {...staggerContainer}>
             {[
               "Eliminate transmission losses (currently 5–10% of all generated electricity)",
               "Provide energy sovereignty to regions dependent on fuel imports",
               "Enable rapid deployment to disaster zones and developing nations",
               "Decouple economic growth from carbon emissions",
             ].map((item) => (
-              <div key={item} className="flex gap-3 items-start">
+              <motion.div key={item} className="flex gap-3 items-start" variants={staggerItem}>
                 <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 shrink-0" />
                 <p className="text-muted-foreground">{item}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </motion.section>
 
         <div className="h-px glow-line" />
@@ -279,17 +292,17 @@ const Discover = () => {
             Grid Comparison
           </h2>
 
-          <div className="grid grid-cols-3 gap-px bg-border rounded-lg overflow-hidden">
+          <motion.div className="grid grid-cols-3 gap-px bg-border rounded-lg overflow-hidden" {...staggerContainer}>
             {/* Header */}
-            <div className="bg-card/60 p-4">
+            <motion.div className="bg-card/60 p-4" variants={staggerItem}>
               <p className="tech-label">Metric</p>
-            </div>
-            <div className="bg-card/60 p-4">
+            </motion.div>
+            <motion.div className="bg-card/60 p-4" variants={staggerItem}>
               <p className="tech-label">Current Grid</p>
-            </div>
-            <div className="bg-card/60 p-4">
+            </motion.div>
+            <motion.div className="bg-card/60 p-4" variants={staggerItem}>
               <p className="tech-label text-primary">Ascent Source</p>
-            </div>
+            </motion.div>
             {/* Rows */}
             {[
               ["Carbon Emissions", "25+ Gt CO₂/year", "Zero"],
@@ -298,8 +311,8 @@ const Discover = () => {
               ["Waste Profile", "Toxic, long-lived", "Helium (inert, safe)"],
               ["Deployment", "Fixed, centralized", "Modular, anywhere"],
             ].map(([metric, current, ascent]) => (
-              <>
-                <div key={metric} className="bg-card/30 p-4 border-t border-border">
+              <motion.div key={metric} className="contents" variants={staggerItem}>
+                <div className="bg-card/30 p-4 border-t border-border">
                   <p className="text-sm text-foreground font-medium">{metric}</p>
                 </div>
                 <div className="bg-card/30 p-4 border-t border-border">
@@ -308,9 +321,9 @@ const Discover = () => {
                 <div className="bg-card/30 p-4 border-t border-border">
                   <p className="text-sm text-primary font-medium">{ascent}</p>
                 </div>
-              </>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </motion.section>
 
         <div className="h-px glow-line" />
@@ -321,7 +334,7 @@ const Discover = () => {
           <h2 className="heading-section mb-10">
             Three Principles
           </h2>
-          <div className="space-y-8 mb-16">
+          <motion.div className="space-y-8 mb-16" {...staggerContainer}>
             {[
               {
                 num: "01",
@@ -339,15 +352,15 @@ const Discover = () => {
                 desc: "Enough for every person, every city, every ambition",
               },
             ].map((p) => (
-              <div key={p.num} className="flex gap-5 items-start">
+              <motion.div key={p.num} className="flex gap-5 items-start" variants={staggerItem}>
                 <span className="font-mono text-primary text-sm mt-1">{p.num}</span>
                 <div>
                   <p className="font-display text-xl text-foreground font-medium">{p.title}</p>
                   <p className="text-muted-foreground mt-1">{p.desc}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           <p className="body-text italic text-center">
             The reactor age isn't coming. It's already being imagined.
