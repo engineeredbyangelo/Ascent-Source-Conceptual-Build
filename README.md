@@ -1,4 +1,4 @@
-# Discover Ascent Source
+# Ascent Source
 
 ## A Star in a Box
 
