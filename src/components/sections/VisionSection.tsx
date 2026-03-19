@@ -35,7 +35,7 @@ const VisionSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4, duration: 1 }}
-          className="mt-32 flex flex-col items-center gap-6"
+          className="mt-12 flex flex-col items-center gap-6"
         >
           <Link to="/discover" className="hud-button-primary inline-flex items-center gap-3 rounded-lg no-underline">
             Discover the Technology
