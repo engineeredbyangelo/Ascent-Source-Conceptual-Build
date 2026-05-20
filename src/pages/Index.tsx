@@ -1,6 +1,5 @@
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import ReactorCanvas from "@/components/3d/ReactorCanvas";
-import HudOverlay from "@/components/ui/HudOverlay";
 import HeroSection from "@/components/sections/HeroSection";
 import ExplodedSection from "@/components/sections/ExplodedSection";
 import PhilosophySection from "@/components/sections/PhilosophySection";
@@ -35,8 +34,8 @@ const Index = () => {
         <ReactorCanvas scrollProgress={scrollProgress} />
       </motion.div>
 
-      {/* HUD Overlay */}
-      <HudOverlay />
+
+
 
       {/* Scroll progress rail */}
       <motion.div
