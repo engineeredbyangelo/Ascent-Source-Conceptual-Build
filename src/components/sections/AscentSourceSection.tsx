@@ -42,9 +42,10 @@ const AscentSourceSection = () => {
               transition={{
                 delay: i * 0.08,
                 duration: 0.7,
-                ease: [0.23, 1, 0.32, 1],
+                ease: [0.16, 1, 0.3, 1],
               }}
-              className="hud-panel p-6 md:p-8 group hover:border-primary/30 transition-all duration-300 cursor-default flex items-center justify-between gap-6"
+              whileHover={{ scale: 1.01, x: 4 }}
+              className="hud-panel p-6 md:p-8 group hover:border-primary/40 hover:shadow-[0_4px_30px_hsl(187_100%_50%/0.1)] transition-[border,box-shadow] duration-300 cursor-default flex items-center justify-between gap-6"
             >
               <div className="flex items-center gap-6 md:gap-10">
                 <span className="font-mono text-xs text-muted-foreground/40 tracking-widest w-6">

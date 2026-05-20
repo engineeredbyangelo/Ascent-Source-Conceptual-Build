@@ -12,7 +12,7 @@ const SectionContainer = ({ children, className, id }: SectionContainerProps) =>
     <section
       id={id}
       className={cn(
-        "relative z-10 min-h-screen flex items-center",
+        "relative z-10 min-h-screen flex items-center scroll-mt-24",
         "px-6 sm:px-8 md:px-12 lg:px-16",
         className
       )}

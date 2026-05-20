@@ -66,9 +66,10 @@ const TechSection = () => {
               transition={{
                 delay: i * 0.1,
                 duration: 0.9,
-                ease: [0.23, 1, 0.32, 1],
+                ease: [0.16, 1, 0.3, 1],
               }}
-              className="hud-panel p-8 md:p-10 group hover:border-primary/20 transition-all duration-500"
+              whileHover={{ scale: 1.015, y: -2 }}
+              className="hud-panel p-8 md:p-10 group hover:border-primary/30 hover:shadow-[0_8px_40px_hsl(187_100%_50%/0.12)] transition-[border,box-shadow] duration-500"
             >
               {/* Stat callout */}
               <div className="mb-6">
