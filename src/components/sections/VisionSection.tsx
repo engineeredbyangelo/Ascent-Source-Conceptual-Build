@@ -37,10 +37,16 @@ const VisionSection = () => {
           transition={{ delay: 0.4, duration: 1 }}
           className="mt-12 flex flex-col items-center gap-6"
         >
-          <Link to="/discover" className="hud-button-primary inline-flex items-center gap-3 rounded-lg no-underline">
-            Discover the Technology
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          <motion.div
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ type: "spring", stiffness: 400, damping: 22 }}
+          >
+            <Link to="/discover" className="hud-button-primary inline-flex items-center gap-3 rounded-lg no-underline">
+              Discover the Technology
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </motion.div>
           <div className="w-px h-16 bg-gradient-to-b from-primary/40 to-transparent" />
           <p className="font-mono text-xs text-muted-foreground/40 tracking-widest">
             ASCENT SOURCE — CONCEPTUAL TECHNOLOGY
