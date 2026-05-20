@@ -25,23 +25,35 @@ const PhilosophySection = () => {
           {statements.map((item, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, clipPath: "inset(100% 0 0 0)" }}
+              whileInView={{ opacity: 1, clipPath: "inset(0% 0 0 0)" }}
               viewport={{ once: true, margin: "-120px" }}
               transition={{
-                duration: 1.2,
-                ease: [0.23, 1, 0.32, 1],
+                duration: 1.3,
+                ease: [0.16, 1, 0.3, 1],
               }}
               className="flex items-start gap-8 md:gap-12"
             >
               <span className="font-mono text-sm text-primary/40 mt-3 shrink-0 tracking-widest">
                 {item.number}
               </span>
-              <div className="space-y-4">
-                <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-0.04em] leading-[0.9] text-foreground">
+              <div className="space-y-4 overflow-hidden">
+                <motion.h2
+                  initial={{ y: "105%" }}
+                  whileInView={{ y: "0%" }}
+                  viewport={{ once: true, margin: "-120px" }}
+                  transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+                  className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-0.04em] leading-[0.9] text-foreground"
+                >
                   {item.text}
-                </h2>
-                <div className="w-16 h-px bg-primary/30" />
+                </motion.h2>
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true, margin: "-120px" }}
+                  transition={{ duration: 0.9, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  className="w-16 h-px bg-primary/40 origin-left"
+                />
               </div>
             </motion.div>
           ))}
